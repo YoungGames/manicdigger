@@ -2074,8 +2074,13 @@ public class GamePlatformNative : GamePlatform
         }
     }
 
+    int lastWheelTick;
     void Mouse_WheelChanged(object sender, OpenTK.Input.MouseWheelEventArgs e)
     {
+        if (TimeMillisecondsFromStart() - lastWheelTick < 50)
+        {
+            return;
+        }
         foreach (MouseEventHandler h in mouseEventHandlers)
         {
             MouseWheelEventArgs args = new MouseWheelEventArgs();
@@ -2083,6 +2088,7 @@ public class GamePlatformNative : GamePlatform
             args.SetDeltaPrecise(e.DeltaPrecise);
             h.OnMouseWheel(args);
         }
+        lastWheelTick = TimeMillisecondsFromStart();
     }
 
     void Mouse_ButtonDown(object sender, MouseButtonEventArgs e)

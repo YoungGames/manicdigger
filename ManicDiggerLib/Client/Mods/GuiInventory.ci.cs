@@ -555,7 +555,7 @@
         if ((game_.guistate == GuiState.Normal || (game_.guistate == GuiState.Inventory && !IsMouseOverCells()))
             && (!game_.keyboardState[game_.GetKey(GlKeys.LShift)]))
         {
-            game_.ActiveMaterial -= delta < 0 ? -1 : 1;
+            game_.ActiveMaterial -= game_.platform.FloatToInt(delta);
             game_.ActiveMaterial = game_.ActiveMaterial % 10;
             while (game_.ActiveMaterial < 0)
             {
