@@ -48,8 +48,6 @@
         yInv = false;
         ySpeed = minspeed + rnd.MaxNext(5);
 
-        z = -5;
-
         filter = 0;
 
         mvMatrix = Mat4.Create();
@@ -290,8 +288,6 @@
     int minspeed;
     RandomCi rnd;
 
-    float z;
-
     int filter;
 
     bool initialized;
@@ -393,7 +389,6 @@
 
     public void HandleMouseWheel(MouseWheelEventArgs e)
     {
-        z += e.GetDeltaPrecise() / 5;
         screen.OnMouseWheel(e);
     }
 
